@@ -9,22 +9,12 @@
 
     	<script src="static/js/app.js"></script>
 	</head>
-	<body ng-controller="stampCtrl">
+	<body>
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-8">
 					<h1>Stamp-Hub</h1>
-					<table class="table table-striped">
-						<tr valign="top" ng-repeat="stamp in stamps">
-							<td>
-								<img src='{a stamp.image a}' height='100' width='100'/>
-							</td>
-							<td>
-								<b>Image {a stamp.id a}: Plate {a stamp.plate_number a}</b><br>
-								Tags:<span ng-repeat="tag in stamp.tags">#{a tag.name a} </span><br>
-							</td>
-						</tr>
-					</table>
+					<div ng-view></div>
 				</div>
 			</div>
 		</div>
