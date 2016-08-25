@@ -10,16 +10,30 @@
 <div class="panel panel-default">
 	<div class="panel-body">
 	<table class="table table-striped">
-		<tr valign="top" ng-repeat="stamp in stamps | filter: searchtext">
-			<td>
-				<img src='{a stamp.image a}' height='100' width='100'/>
-			</td>
-			<td>
-				<b>Image {a stamp.id a}: Plate {a stamp.plate_number a}</b><br>
-				Tags:<span ng-repeat="tag in stamp.tags">
-					#{a tag.name a} 
-				</span><br>
-			</td>
-		</tr>
+		<tbody>
+			<tr valign="top" ng-repeat="stamp in displayedStamps | filter: searchtext">
+				<td>
+					<img src='{a stamp.image a}' height='100' width='100'/>
+				</td>
+				<td>
+					<b>Image {a stamp.id a}: Plate {a stamp.plate_number a}</b><br>
+					Tags:<span ng-repeat="tag in stamp.tags">
+						#{a tag.name a} 
+					</span><br>
+				</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<td colspan="6">
+                <pagination 
+                  items-per-page="stampsPerPage"
+			      ng-model="currentPage"
+			      total-items="stamps.length"
+			      max-size="3"  
+			      boundary-links="true"
+			      ng-change="pageChanged()">
+			    </pagination>
+            </td>
+		</tfoot>
 	</table>
 </div>

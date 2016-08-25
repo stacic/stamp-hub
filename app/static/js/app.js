@@ -1,4 +1,4 @@
-var stampApp = angular.module('stampApp', ['ngRoute']);
+var stampApp = angular.module('stampApp', ['ngRoute', 'ui.bootstrap']);
 
 stampApp.config(function($interpolateProvider, $routeProvider) {
 		// Change Angular delimiter notation so it does not conflict with Jinja2
@@ -16,7 +16,25 @@ stampApp.config(function($interpolateProvider, $routeProvider) {
 stampApp.controller('stampCtrl', function($scope, $http) {
 	$http.get('/stamp/api/v1.0/stamps').success(function(data){
 		$scope.stamps = data;
+		$scope.getDisplayedStamps();
 	}).error(function(data){
 		console.log('Error getting data in stampCtrl');
-	})
+	});
+
+	// Pagination variables
+	$scope.currentPage = 1;
+	$scope.stampsPerPage = 5;
+	$scope.displayedStamps = [];
+
+	$scope.getDisplayedStamps = function() {
+		var begin = (($scope.currentPage - 1) * $scope.stampsPerPage);
+		var end = begin + $scope.stampsPerPage;
+		
+		$scope.displayedStamps = $scope.stamps.slice(begin, end);
+	};
+
+	$scope.pageChanged = function(){
+		$scope.getDisplayedStamps();
+	};
+
 })
