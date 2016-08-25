@@ -11,7 +11,7 @@
 						{% for stamp in stamps %}
 						<tr valign="top">
 							<td>
-								<img src='{{ stamp.image }}' height='100' width='100'/>
+								<img src='{{ stamp.photo_img() }}' height='100' width='100'/>
 							</td>
 							<td>
 								<b>Image {{ stamp.id }}: Plate {{ stamp.plate_number }}</b><br>

@@ -1,3 +1,5 @@
 flask
 *.pyc
 *.pyo
+app.db
+db_repository
