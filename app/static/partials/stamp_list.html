@@ -1,7 +1,7 @@
 <div class="row">
 	<div class="col-xs-12">
 		<label for="searchbox">Search:</label>
-		<input type="text" id='searchbox' ng-model='searchtext' class="form-control" />
+		<input type="text" id='searchbox' ng-model='searchtext' ng-change="search()" class="form-control" />
 	</div>
 </div>
 
@@ -11,7 +11,7 @@
 	<div class="panel-body">
 	<table class="table table-striped">
 		<tbody>
-			<tr valign="top" ng-repeat="stamp in displayedStamps | filter: searchtext">
+			<tr valign="top" ng-repeat="stamp in displayedStamps">
 				<td>
 					<img src='{a stamp.image a}' height='100' width='100'/>
 				</td>
@@ -28,7 +28,7 @@
                 <pagination 
                   items-per-page="stampsPerPage"
 			      ng-model="currentPage"
-			      total-items="stamps.length"
+			      total-items="filteredStamps.length"
 			      max-size="3"  
 			      boundary-links="true"
 			      ng-change="pageChanged()">

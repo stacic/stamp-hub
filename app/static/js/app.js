@@ -13,9 +13,11 @@ stampApp.config(function($interpolateProvider, $routeProvider) {
 		.otherwise({ redirectTo: '/' });
 });
 
-stampApp.controller('stampCtrl', function($scope, $http) {
+stampApp.controller('stampCtrl', function($scope, $http, $filter) {
 	$http.get('/stamp/api/v1.0/stamps').success(function(data){
 		$scope.stamps = data;
+
+		$scope.filteredStamps = $scope.stamps;
 		$scope.getDisplayedStamps();
 	}).error(function(data){
 		console.log('Error getting data in stampCtrl');
@@ -30,11 +32,16 @@ stampApp.controller('stampCtrl', function($scope, $http) {
 		var begin = (($scope.currentPage - 1) * $scope.stampsPerPage);
 		var end = begin + $scope.stampsPerPage;
 		
-		$scope.displayedStamps = $scope.stamps.slice(begin, end);
+		$scope.displayedStamps = $scope.filteredStamps.slice(begin, end);
 	};
 
 	$scope.pageChanged = function(){
 		$scope.getDisplayedStamps();
 	};
 
-})
+	$scope.search = function(){
+		$scope.filteredStamps = $filter('filter')($scope.stamps, $scope.searchtext);
+		$scope.currentPage = 1;
+		$scope.getDisplayedStamps();
+	};
+});
