@@ -1,6 +1,9 @@
 <html ng-app="stampApp">
 	<head>
+		<!-- Bootstrap -->
 		<link rel="stylesheet"	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+		<script src="/static/js/bootstrap.min.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 		<!-- Angular -->
 		<script src="https://code.angularjs.org/1.4.3/angular.min.js"></script>
@@ -11,10 +14,17 @@
     	<script src="static/js/app.js"></script>
 	</head>
 	<body>
+		
+		<div class="navbar navbar-default navbar-static-top">
+			<div class="container">
+				<div class="navbar-header">
+					<h1>Stamp-Hub</h1>
+				</div>
+			</div>
+		</div>
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-8">
-					<h1>Stamp-Hub</h1>
+				<div class="col-lg-8" >
 					<div ng-view></div>
 				</div>
 			</div>

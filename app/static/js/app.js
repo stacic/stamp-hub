@@ -14,6 +14,7 @@ stampApp.config(function($interpolateProvider, $routeProvider) {
 });
 
 stampApp.controller('stampCtrl', function($scope, $http, $filter) {
+	// Get stamp data from Flask
 	$http.get('/stamp/api/v1.0/stamps').success(function(data){
 		$scope.stamps = data;
 
