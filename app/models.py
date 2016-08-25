@@ -1,4 +1,5 @@
 from app import db
+from flask import current_app
 
 import os
 
@@ -6,9 +7,6 @@ tags = db.Table('tags',
 	db.Column('tag_id', db.Integer, db.ForeignKey('tag.id')),
 	db.Column('stamp_id', db.Integer, db.ForeignKey('stamp.id'))
 )
-
-
-IMAGES_PATH = '/static/stamp-images/'
 
 class Stamp(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
@@ -22,7 +20,7 @@ class Stamp(db.Model):
 		return '<Stamp %r>' % (self.plate_number)
 
 	def photo_img(self):
-		return os.path.join(IMAGES_PATH, self.image)
+		return os.path.join(current_app.config['IMAGES_PATH'], self.image)
 
 	@property
 	def serialize(self):
