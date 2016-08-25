@@ -1,7 +1,16 @@
+<div class="row">
+	<div class="col-xs-12">
+		<label for="searchbox">Search:</label>
+		<input type="text" id='searchbox' ng-model='searchtext' class="form-control" />
+	</div>
+</div>
+
+<br>
+
 <div class="panel panel-default">
 	<div class="panel-body">
 	<table class="table table-striped">
-		<tr valign="top" ng-repeat="stamp in stamps">
+		<tr valign="top" ng-repeat="stamp in stamps | filter: searchtext">
 			<td>
 				<img src='{a stamp.image a}' height='100' width='100'/>
 			</td>
