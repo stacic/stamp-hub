@@ -1,0 +1,29 @@
+<html>
+	<head>
+		<!-- <link rel="stylesheet"	href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+ -->	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8">
+					<h1>Stamp-Hub</h1>
+					<table class="table table-striped">
+						{% for stamp in stamps %}
+						<tr valign="top">
+							<td>
+								<img src='{{ stamp.image }}' height='100' width='100'/>
+							</td>
+							<td>
+								<b>Image {{ stamp.id }}: Plate {{ stamp.plate_number }}</b><br>
+								{% for tag in stamp.tags %}
+								Tags:<span>{{ tag.name }}</span><br>
+								{% endfor %}
+							</td>
+						</tr>
+						{% endfor %}
+					</table>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
