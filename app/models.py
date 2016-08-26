@@ -1,3 +1,6 @@
+"""This module defines the database models
+"""
+
 from app import db
 from flask import current_app
 
@@ -9,6 +12,17 @@ tags = db.Table('tags',
 )
 
 class Stamp(db.Model):
+	"""This defines a database model for Stamps.
+
+	A stamp is an image etched onto a metal plate. There may be multiple stamps per plate.
+
+	Attributes:
+		id(int): Primary key identifier.
+		plate_number(str): Identifies the plate the stamp comes from
+		image(str): Path to a picture of the stamp, relative to IMAGES_PATH
+		tags(Tag): Many to Many relationship with the Tag model
+
+	"""
 	id = db.Column(db.Integer, primary_key=True)
 	plate_number = db.Column(db.String(10), index=True, unique=False)
 	image = db.Column(db.String(64), unique=True)
@@ -36,6 +50,14 @@ class Stamp(db.Model):
 		return [ tag.serialize for tag in self.tags ]
 
 class Tag(db.Model):
+	"""This defines a database model for Tags.
+
+	A tag is used to categorize Stamp objects.
+
+	Attributes:
+		id(int): Primary key identifier.
+		name(str): Describes the tag.
+	"""
 	id = db.Column(db.Integer, primary_key=True)
 	name = db.Column(db.String(30))
 
